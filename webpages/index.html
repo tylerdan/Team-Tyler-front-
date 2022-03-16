@@ -4,9 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie Review Hub</title>
+    
+    <link id="theme" rel="stylesheet" type="text/css" href="..\stylesheets\styles-light.css"/>
+    <link rel="stylesheet" href="..\stylesheets\styles.css"/>
 </head>
 <body>
-    
+    <div id="banner">
+        <h1>Welcome to the Movie Site!</h1>
+        <label class="switch">
+            <input id="theme-toggle" onclick="darkModeToggle()" type="checkbox">
+            <span class="slider round"></span>
+          </label>
+    </div>
+    <span id="SearchSpan">
+        <h3>Search for a movie</h3>
+        <input type="text" value="serach for a movie">
+        <button type="submit">Search!</button>
+    </span>
+    <span id="login">
+        <h3>Login to save your reviews</h3>
+        <form name="loginForm" method="post">
+            <p>Username: <input type="text"></p>
+            <p>Password: <input type="password"></p>
+            <button type="submit" for="loginForm">Search!</button>
+        </form>
+    </span>
+
+    <div id="footer">
+        <p>this is the footer!</p>
+    </div>
 </body>
+<script src="..\scripts\homescript.js"></script>
 </html>
