@@ -1,2 +1,2 @@
 # Team-Tyler-front-
-This is the front end for Team ${name}
+This is the front end for Team Tyler
