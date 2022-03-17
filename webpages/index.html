@@ -25,15 +25,17 @@
         <div class="row">
             <div id="SearchSpan" class="col order-first">
                 <h3>Search for a movie</h3>
-                <input type="text" class="input-group-text" value="serach for a movie">
+                <form action="searchResults.html" method="GET">
+                <input required type="search" id="movieSearchInput" class="input-group-text" placeholder="Search for a movie" name="input">
             </br>
-                <button type="button" class="btn btn-primary" type="submit">Search!</button>
+                <button id="movieSearchSubmit" class="btn btn-primary" type="submit">Search!</button>
+            </form>
             </div>
             <div id="login" class="col order-last">
                 <h3>Login to save your reviews</h3>
                 <form name="loginForm" method="post">
-                    <p>Username: <input class="input-group-text" type="text"></p>
-                    <p>Password: <input class="input-group-text" type="password"></p>
+                    <p>Username: <input class="input-group-text" type="text" placeholder="Enter your username"></p>
+                    <p>Password: <input class="input-group-text" type="password" placeholder="Enter your password"></p>
                     <button class="btn btn-primary" type="submit" for="loginForm">Login</button>
                 </form>
             </div>
