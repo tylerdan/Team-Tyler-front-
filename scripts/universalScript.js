@@ -9,8 +9,12 @@ const movieSearchSubmit=document.getElementById('movieSearchSubmit');
 
 //gets the value from the url and runs a search
 function getQueryValue(){
-    let query = window.location.search.split("=");
-     //console.log(query[1]);
+    let query = window.location.search.split("input=");
+    console.log((query[1].substring(query[1].length-1)));
+   if(Number((query[1].substring(query[1].length-1))>1)){
+    document.getElementsByClassName("back")[0].disabled=false;
+    document.getElementsByClassName("back")[1].disabled=false;
+   }
     movieSeach(query[1]);
 }
 
@@ -50,12 +54,48 @@ async function movieSeach(query){
 
 }
 
+//function to display more results
+function getNextResults(){
+    let query = window.location.search.split("input=");
+    //let pageNum =query.substring(0,1);
+    let pageIndex = Number(query[1].substring(query[1].length-1));
+    if (Number.isNaN(pageIndex)||pageIndex==1){
+        console.log(2);
+        query=query[1]+'&page=2'
+    } else{
+        pageIndex++;
+     query=query[1].substring(0,query[1].length-1)+pageIndex;
+     
+    }
+        window.location.href='searchResults.html'+'?input='+query;
+}
+
+//function to display prior results
+function getPreviousResults(){
+    let query = window.location.search.split("input=");
+    //let pageNum =query.substring(0,1);
+    let pageIndex = Number(query[1].substring(query[1].length-1));
+    if (Number.isNaN(pageIndex)||pageIndex==1){
+       // document.getElementById("back").disabled=true;
+    } else{
+       // document.getElementById("back").disabled=false;
+        
+        pageIndex--;
+     query=query[1].substring(0,query[1].length-1)+pageIndex;
+     window.location.href='searchResults.html'+'?input='+query;
+    }
+        
+}
 
 //movie class
 class Movie{
     constructor(title, release_date, poster_path, overview){
         this.title=title;
-        this.release_date=release_date;
+        if (release_date==undefined){
+            this.release_date=''
+            } else{
+            this.release_date=release_date;
+            }
         this.poster_path=poster_path;
         this.overview=overview;
         }
