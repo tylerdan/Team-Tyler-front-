@@ -5,32 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Review Hub</title>
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link id="theme" rel="stylesheet" type="text/css" href="..\stylesheets\styles-light.css"/>
     <link rel="stylesheet" href="..\stylesheets\styles.css"/>
 </head>
 <body>
-    <div id="banner">
+    <div class="row" id="banner">
+        <div class="col row justify-content-center">
         <h1>Welcome to the Movie Site!</h1>
-        <label class="switch">
+        </div>
+        <div class="col-2">
+            <label class="switch">
             <input id="theme-toggle" onclick="darkModeToggle()" type="checkbox">
             <span class="slider round"></span>
-          </label>
+            </label>
+         </div>
     </div>
-    <span id="SearchSpan">
-        <h3>Search for a movie</h3>
-        <input type="text" value="serach for a movie">
-        <button type="submit">Search!</button>
-    </span>
-    <span id="login">
-        <h3>Login to save your reviews</h3>
-        <form name="loginForm" method="post">
-            <p>Username: <input type="text"></p>
-            <p>Password: <input type="password"></p>
-            <button type="submit" for="loginForm">Search!</button>
-        </form>
-    </span>
-
+    <div class="container">
+        <div class="row">
+            <div id="SearchSpan" class="col order-first">
+                <h3>Search for a movie</h3>
+                <input type="text" class="input-group-text" value="serach for a movie">
+            </br>
+                <button type="button" class="btn btn-primary" type="submit">Search!</button>
+            </div>
+            <div id="login" class="col order-last">
+                <h3>Login to save your reviews</h3>
+                <form name="loginForm" method="post">
+                    <p>Username: <input class="input-group-text" type="text"></p>
+                    <p>Password: <input class="input-group-text" type="password"></p>
+                    <button class="btn btn-primary" type="submit" for="loginForm">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
     <div id="footer">
         <p>this is the footer!</p>
     </div>
