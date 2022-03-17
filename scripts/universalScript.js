@@ -1,4 +1,3 @@
-
 const apiURL = 'https://api.themoviedb.org/3/';
 const apiKey = '?api_key=a96991b0bf66d698b2c930defd8ed6db';
 //search pattern is: apiURL+'search/movie'+apiKey+'&query='+ movie_title
@@ -15,7 +14,7 @@ function getQueryValue(){
     movieSeach(query[1]);
 }
 
-//runs the search and returns the values
+//runs the search and create a list of the values
 async function movieSeach(query){
     // console.log(query);
     let search=await fetch(apiURL+'search/movie'+apiKey+'&query='+ query);
@@ -24,13 +23,28 @@ async function movieSeach(query){
         let searchResults=await search.json();
         // console.log(searchResults);
         let resultList=document.createElement('ol');
-        document.getElementById("searchResults").appendChild(resultList)
+        document.getElementById("searchResults").appendChild(resultList);
         for(let movie of searchResults.results){
-            let newMovie = new Movie(movie.title, movie.release_date)
-            console.log(newMovie)
-            let movieResult = document.createElement('li');
-            movieResult.innerHTML= newMovie;
-            resultList.appendChild(movieResult)
+            if(movie.adult==false){
+                let newMovie = new Movie(movie.title, movie.release_date, movie.poster_path, movie.overview);
+               // console.log(newMovie)
+                let movieResult = document.createElement('li');
+                movieResult.innerHTML= newMovie;
+                resultList.appendChild(movieResult);
+
+                let poster =document.createElement('img');
+                poster.src = "https://image.tmdb.org/t/p/w200/"+ newMovie.poster_path;
+                poster.alt = newMovie.title + ' poster not found.';
+                resultList.appendChild(poster);
+
+                
+                let summary=document.createElement('p');
+                summary.appendChild(document.createTextNode(newMovie.overview));
+                resultList.appendChild(summary);
+
+
+                
+            }
         }
     }
 
@@ -39,12 +53,15 @@ async function movieSeach(query){
 
 //movie class
 class Movie{
-    constructor(title, release_date){
+    constructor(title, release_date, poster_path, overview){
         this.title=title;
         this.release_date=release_date;
-    }
+        this.poster_path=poster_path;
+        this.overview=overview;
+        }
+    
     toString(){
-        return this.title+" : "+this.release_date;
+        return this.title+" : "+this.release_date.substring(0,4);
     }
 }
 
