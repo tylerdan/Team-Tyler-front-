@@ -109,6 +109,15 @@ class Movie{
 //following is the toggle for dark mode
 const themeStylesheet =document.getElementById("theme");
 const themeToggle =document.getElementById('theme-toggle');
+const storedTheme = localStorage.getItem('theme');
+if(storedTheme){
+    if(themeStylesheet.href.includes('dark')){
+        themeToggle.checked=true;
+    }else{
+        themeToggle.checked=false;
+    }
+    themeStylesheet.href = storedTheme;
+}
 
 function darkModeToggle(){
     if(themeToggle.checked==true){
@@ -118,4 +127,5 @@ function darkModeToggle(){
         themeStylesheet.href ="..\\stylesheets\\styles-light.css";
        
     }
+    localStorage.setItem('theme',themeStylesheet.href)
 }

@@ -14,7 +14,7 @@
 
     <div class="row" id="banner">
         <div class="col row justify-content-center">
-        <h1>Welcome to the Movie Site!</h1>
+        <h1><a href="index.html">Welcome to the Movie Site!</a></h1>
         </div>
         <div class="col-2">
             <label class="switch">
@@ -23,6 +23,15 @@
             </label>
          </div>
     </div>
+    <div id="SearchSpan" class="col order-first">
+        <h3>Search for a movie</h3>
+        <form action="searchResults.html" method="GET">
+        <input required type="search" id="movieSearchInput" class="input-group-text" placeholder="Search for a movie" name="input">
+    </br>
+        <button id="movieSearchSubmit" class="btn btn-primary" type="submit">Search!</button>
+    </form>
+    </div>
+
     <div>
         <h2>Search results</h2>
         <div id="navigateResults">
