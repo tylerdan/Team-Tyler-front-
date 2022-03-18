@@ -5,7 +5,7 @@ const loginError = document.getElementById('login-error-msg');
 loginButton.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(this);
-
+    // test
     fetch(/*'probably controller location'*/, {
         method:'post',
         body: formData
