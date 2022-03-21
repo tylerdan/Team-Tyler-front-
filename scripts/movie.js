@@ -2,6 +2,7 @@ const title = document.getElementById("title")
 const banner = document.getElementById("bannerImg");
 const data = document.getElementById("data")
 const table = document.getElementById("review_table")
+const form_caption = document.getElementById("form_caption")
 
 
 //a function to use the movie's data to fill out the page
@@ -19,16 +20,23 @@ async function populatePage(){
             poster.alt = movie.title + ' poster not found.';
                     
 
-        banner.src="https://image.tmdb.org/t/p/w500/"+movie.backdrop_path
+        banner.src="https://image.tmdb.org/t/p/w500/"+movie.backdrop_path;
         
         var summary=document.createElement('p');
             summary.innerHTML=movie.overview;
         
-        data.appendChild(summary)
-        data.appendChild(poster) 
+        data.appendChild(summary);
+        data.appendChild(poster); 
+
+        document.getElementById("form_caption").innerHTML="Submit your review of "+movie.title;
+        document.getElementById("form_id").innerHTML=movie.id;
+        //document.getElementById("user_id").innerHTML= USER ID FROM BACK END;
+        
     getReviews();
 }
 
+
+//populates the review table from the backend
 function getReviews(){
     let newRow=table.insertRow()
     table.appendChild(newRow)
