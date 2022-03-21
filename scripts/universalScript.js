@@ -10,12 +10,18 @@ const movieSearchSubmit=document.getElementById('movieSearchSubmit');
 //gets the value from the url and runs a search
 function getQueryValue(){
     let query = window.location.search.split("input=");
-    console.log((query[1].substring(query[1].length-1)));
+    //console.log((query[1].substring(query[1].length-1)));
    if(Number((query[1].substring(query[1].length-1))>1)){
     document.getElementsByClassName("back")[0].disabled=false;
     document.getElementsByClassName("back")[1].disabled=false;
    }
     movieSeach(query[1]);
+}
+
+function selectMovie(event){
+    movieId=event.target.id;
+    window.location.href='movie/'+ movieId;
+
 }
 
 //runs the search and create a list of the values
@@ -27,28 +33,39 @@ async function movieSeach(query){
         let searchResults=await search.json();
         // console.log(searchResults);
         let resultList=document.createElement('ol');
-        document.getElementById("searchResults").appendChild(resultList);
+      //  resultList.addEventListener("click",sayhi);
+
         for(let movie of searchResults.results){
             if(movie.adult==false){
-                let newMovie = new Movie(movie.title, movie.release_date, movie.poster_path, movie.overview);
+                let newMovie = new Movie(movie.title, movie.release_date, movie.poster_path, movie.overview, movie.id);
                // console.log(newMovie)
                 let movieResult = document.createElement('li');
-                movieResult.innerHTML= newMovie;
                 resultList.appendChild(movieResult);
-
-                let poster =document.createElement('img');
-                poster.src = "https://image.tmdb.org/t/p/w200/"+ newMovie.poster_path;
-                poster.alt = newMovie.title + ' poster not found.';
-                resultList.appendChild(poster);
-
-                
-                let summary=document.createElement('p');
-                summary.appendChild(document.createTextNode(newMovie.overview));
-                resultList.appendChild(summary);
-
-
+                    movieId=newMovie.id;
+                   
+                    let movieData=document.createElement('div');
+                        movieData.innerHTML=newMovie;
+                        movieData.id=movieId;
+                        movieData.appendChild(document.createElement('br'))
+                   
+                    let poster =document.createElement('img');
+                        poster.src = "https://image.tmdb.org/t/p/w200/"+ newMovie.poster_path;
+                        poster.alt = newMovie.title + ' poster not found.';
+                        poster.id=movieId;
+                    movieData.appendChild(poster);
+                    
+                    let summary=document.createElement('p');
+                        summary.id=movieId;
+                        summary.appendChild(document.createTextNode(newMovie.overview));
+                    movieData.appendChild(summary);
+                    
+              //  movieResult.innerHTML= newMovie.title;
+                movieResult.appendChild(movieData)
+                movieResult.onclick=selectMovie;
                 
             }
+            document.getElementById("searchResults").appendChild(resultList);
+        
         }
     }
 
@@ -89,7 +106,7 @@ function getPreviousResults(){
 
 //movie class
 class Movie{
-    constructor(title, release_date, poster_path, overview){
+    constructor(title, release_date, poster_path, overview, id){
         this.title=title;
         if (release_date==undefined){
             this.release_date=''
@@ -98,6 +115,7 @@ class Movie{
             }
         this.poster_path=poster_path;
         this.overview=overview;
+        this.id=id;
         }
     
     toString(){
