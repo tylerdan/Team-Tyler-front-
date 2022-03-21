@@ -20,7 +20,7 @@ function getQueryValue(){
 
 function selectMovie(event){
     movieId=event.target.id;
-    window.location.href='movie/'+ movieId;
+    window.location.href='movie.html?input='+ movieId;
 
 }
 
