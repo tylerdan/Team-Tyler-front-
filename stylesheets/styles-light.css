@@ -1,4 +1,9 @@
 body{
     background-color: burlywood;
+    margin-left: 30px;
+}
+
+li {
+    font-weight: bold;
 }
 

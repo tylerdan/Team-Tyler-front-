@@ -1,5 +1,13 @@
 body{
     background-color: slategray;
     color: whitesmoke;
+    margin-left: 30px;
 }
 
+li {
+    font-weight: bold;
+}
+
+a {
+    color: black;
+}
