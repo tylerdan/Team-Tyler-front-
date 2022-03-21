@@ -54,10 +54,11 @@ async function movieSeach(query){
                         poster.id=movieId;
                     movieData.appendChild(poster);
                     
-                    let summary=document.createElement('p');
-                        summary.id=movieId;
-                        summary.appendChild(document.createTextNode(newMovie.overview));
-                    movieData.appendChild(summary);
+                    //remove if we decide not to use summary in searches
+                    // let summary=document.createElement('p');
+                    //     summary.id=movieId;
+                    //     summary.appendChild(document.createTextNode(newMovie.overview));
+                    // movieData.appendChild(summary);
                     
               //  movieResult.innerHTML= newMovie.title;
                 movieResult.appendChild(movieData)
