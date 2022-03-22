@@ -3,13 +3,13 @@ const banner = document.getElementById("bannerImg");
 const data = document.getElementById("data")
 const table = document.getElementById("review_table")
 const form_caption = document.getElementById("form_caption")
-
+const movieID = window.location.search.split("input=")[1];
 
 //a function to use the movie's data to fill out the page
 async function populatePage(){
-    let query = window.location.search.split("input=");
-    console.log(apiURL+'movie/'+query[1]+apiKey)
-    let search=await fetch(apiURL+'movie/'+query[1]+apiKey);
+    //let query = window.location.search.split("input=");
+    console.log(apiURL+'movie/'+movieID+apiKey)
+    let search=await fetch(apiURL+'movie/'+movieID+apiKey);
     let movie=await search.json();
         
         var year=" ("+movie.release_date.substring(0,4)+")"
@@ -37,15 +37,17 @@ async function populatePage(){
 
 
 //populates the review table from the backend
-function getReviews(){
+async function getReviews(){
     let newRow=table.insertRow()
     table.appendChild(newRow)
-    mockReviews.forEach(element => {
-        let entry=document.createElement('td')
-        entry.innerHTML=element;
-        newRow.appendChild(entry)
+    
+    let search=await fetch("http://localhost:9000/reviews?id="+movieID)
+    console.log(search)
+        // let entry=document.createElement('td')
+        // entry.innerHTML=element;
+        // newRow.appendChild(entry)
 
-    });
+    
 }
 
 

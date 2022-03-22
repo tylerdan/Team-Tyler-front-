@@ -8,29 +8,33 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link id="theme" rel="stylesheet" type="text/css" href="..\stylesheets\styles-light.css"/>
     <link rel="stylesheet" href="..\stylesheets\styles.css"/>
+    <link rel="stylesheet" href="..\stylesheets\home.css"/>
 </head>
 <body>
     <div class="row" id="banner">
+
+        <div class="col-2" id="search">
+            <form action="searchResults.html" method="GET" class="form-inline">
+                <input required type="search" id="movieSearchInput" class="input-group-text" placeholder="Search for a movie" name="input">
+                <button id="movieSearchSubmit" class="btn btn-primary" type="submit">Search!</button>
+            </form>
+        </div>
+
         <div class="col row justify-content-center">
         <h1><a href="index.html">Welcome to the Movie Site!</a></h1>
         </div>
+
         <div class="col-2">
             <label class="switch">
             <input id="theme-toggle" onclick="darkModeToggle()" type="checkbox">
             <span class="slider round"></span>
             </label>
          </div>
+
     </div>
     <div class="container">
         <div class="row">
-            <div id="SearchSpan" class="col order-first">
-                <h3>Search for a movie</h3>
-                <form action="searchResults.html" method="GET">
-                <input required type="search" id="movieSearchInput" class="input-group-text" placeholder="Search for a movie" name="input">
-            </br>
-                <button id="movieSearchSubmit" class="btn btn-primary" type="submit">Search!</button>
-            </form>
-            </div>
+
             <div id="login" class="col order-last">
                 <h3>Login to save your reviews</h3>
                 <form name="loginForm" method="post">
@@ -42,8 +46,12 @@
         </div>
     </div>
 
+    <div class="footer">
+        <a href="index.html">home</a>
+    </div>
+
 </body>
-<footer>  <a href="index.html">home</a></footer>
+
 <script src="..\scripts\homescript.js"></script>
 <script src="..\scripts\universalScript.js"></script>
 </html>
