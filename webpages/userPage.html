@@ -11,6 +11,12 @@
 </head>
 <body>
     <div class="row" id="banner">
+        <div class="col-2" id="search">
+            <form action="searchResults.html" method="GET" class="form-inline">
+                <input required type="search" id="movieSearchInput" class="input-group-text" placeholder="Search for a movie" name="input">
+                <button id="movieSearchSubmit" class="btn btn-primary" type="submit">Search!</button>
+            </form>
+        </div>
         <div class="col row justify-content-center">
         <h1><a href="index.html">Welcome to the Movie Site!</a></h1>
         </div>
@@ -27,7 +33,13 @@
     </div>
 
 
+    <div class="footer">
+        <a href="index.html">home</a>
+    </div>
+
+
+
 </body>
-<footer>  <a href="index.html">home</a></footer>
+
 <script src="..\scripts\universalScript.js"></script>
 </html>

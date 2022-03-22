@@ -1,5 +1,26 @@
-body{
-    background-color: slategray;
-    color: whitesmoke;
+
+a{
+    color: black;
+}
+a:hover{
+    color: white;
+    text-decoration: none;
 }
 
+
+#banner{
+    background-color: #D0DAEE;
+    background-image: linear-gradient(to bottom right, rgb(255, 0, 0), rgb(95, 0, 0));
+}
+
+body{
+        background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(46, 46, 42));
+    color: rgb(255, 255, 255);
+
+}
+
+.footer{
+    background-color: #D0DAEE;
+    background-image: linear-gradient(to bottom right, rgb(255, 0, 0), rgb(95, 0, 0));
+
+}
