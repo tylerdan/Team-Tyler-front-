@@ -2,48 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script defer src="../scripts/login.js"></script>
+    <script defer src="../scripts/register.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="..\stylesheets\login.css">
     <link id="theme" rel="stylesheet" type="text/css" href="..\stylesheets\styles-light.css"/>
     <link rel="stylesheet" href="..\stylesheets\styles.css"/>
-    
+
 </head>
 <body>
-
     <div class="row" id="banner">
         <div class="col row justify-content-center">
-        <h1><a href="index.html">Welcome to the Movie Site!</a></h1>
+            <h1><a href="index.html">Welcome to the Movie Site!</a></h1>
         </div>
         <div class="col-2">
             <label class="switch">
-            <input id="theme-toggle" onclick="darkModeToggle()" type="checkbox">
-            <span class="slider round"></span>
+                <input id="theme-toggle" onclick="darkModeToggle()" type="checkbox">
+                <span class="slider round"></span>
             </label>
-         </div>
-    </div>
-
-
-    <main id="main">
-        <h1>Movie Site Login</h1>
-        <div id="login-error">
-            <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
         </div>
-        <form id="loginForm" action="/login.js">
+    </div>
+    <main id="main">
+        <h3>Register a new account</h3>
+        <form id="registerForm" action="/login.js">
             <input type="text" placeholder="Username" id="uname" required><br>
             <input type="password" placeholder="Password" id="pass" required><br>
-            <button id="login-button" type="submit">Login</button>
+            <button id="register-button" type="submit">Create Account</button>
         </form>
     </main>
-
-    <div class="footer">
-        <a href="index.html">home</a>
-    </div>
-
-
 </body>
-
-<script src="..\scripts\universalScript.js"></script>
 </html>
