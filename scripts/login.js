@@ -5,16 +5,10 @@ const loginError = document.getElementById('login-error-msg');
 loginButton.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(this);
-    const searchParams = new URLSearchParams();
 
-    for(const pair of formData){
-        searchParams.append(pair[0], pair[1]);
-    }
-    console.log(searchParams);
-
-    fetch(/*localhost:9000/login*/, {
+    fetch(/*52.188.20.131:9000/login*/, {
         method:'POST',
-        body: searchParams
+        body: JSON.stringify(formData)
     }).then(function(response) {
         return response.text();
     }).then(function(text){ // put the response text from previous into console
