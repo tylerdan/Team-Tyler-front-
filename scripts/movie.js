@@ -41,7 +41,7 @@ async function getReviews(){
     let newRow=table.insertRow()
     table.appendChild(newRow)
     
-    let search=await fetch("http://localhost:9000/reviews?id="+movieID)
+    let search=await fetch("https://teamtyler.azurewebsites.net/reviews?id="+movieID)
     console.log(search)
         // let entry=document.createElement('td')
         // entry.innerHTML=element;

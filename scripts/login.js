@@ -12,7 +12,7 @@ loginButton.addEventListener("submit", (e) => {
     }
     console.log(searchParams);
     // test
-    fetch(/*'probably controller location'*/, {
+    fetch(/*'probably controller location',*/ {
         method:'post',
         body: searchParams
     }).then(function(response) {
