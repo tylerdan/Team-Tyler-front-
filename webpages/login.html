@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <title>Login</title>
 
-    <script defer src="../scripts/login.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="..\stylesheets\login.css">
     <link id="theme" rel="stylesheet" type="text/css" href="..\stylesheets\styles-light.css"/>
     <link rel="stylesheet" href="..\stylesheets\styles.css"/>
     
 </head>
-<body>
+<body onload="checkCookie()">
 
     <div class="row" id="banner">
         <div class="col row justify-content-center">
@@ -22,6 +22,7 @@
             <input id="theme-toggle" onclick="darkModeToggle()" type="checkbox">
             <span class="slider round"></span>
             </label>
+            <button id="profile-button">User Profile</button>
          </div>
     </div>
 
@@ -31,10 +32,10 @@
         <div id="login-error">
             <p id="login-error-msg"><!--Invalid username and/or password--></p>
         </div>
-        <form id="loginForm" action="/login.js">
+        <form id="login" action="../scripts/login.js" method="post">
             <input type="text" placeholder="Username" id="userName" required><br>
             <input type="password" placeholder="Password" id="passWord" required><br>
-            <button id="login-button" type="submit">Login</button>
+            <button id="login-button" type="submit" value="Submit">Login</button>
         </form>
     </main>
 
@@ -45,5 +46,6 @@
 
 </body>
 
+<script src="..\scripts\login.js"></script>
 <script src="..\scripts\universalScript.js"></script>
 </html>

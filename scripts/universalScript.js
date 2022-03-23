@@ -148,3 +148,37 @@ function darkModeToggle(){
     }
     localStorage.setItem('theme',themeStylesheet.href)
 }
+
+// gets cookie from stored cookies by passed in cookie name
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodeCookie = decodeURIComponent(document.cookie);
+    let ca = decodeCookie.split(';')
+    for (let i = 0; i < ca.length; i++){
+        let c = ca[i];
+        while (c.charAt(0) == ' '){
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0){
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+// checks if cookie is set.
+function checkCookie() {
+    let user = getCookie("username");
+    console.log(user);
+    var profile = document.getElementById("profile-button");
+    // lets user go to profile page if cookie is set or login page if not
+    if (user != "") {
+        profile.onclick = function() {
+            location.assign('../webpages/userPage.html');
+        }
+    } else {
+        profile.onclick = function() {
+            location.assign('../webpages/login.html');
+        }
+    }
+}
