@@ -1,9 +1,10 @@
 const title = document.getElementById("title")
 const banner = document.getElementById("bannerImg");
-const data = document.getElementById("data")
-const table = document.getElementById("review_table")
-const form_caption = document.getElementById("form_caption")
+const data = document.getElementById("data");
+const table = document.getElementById("review_table");
+const form_caption = document.getElementById("form_caption");
 const movieID = window.location.search.split("input=")[1];
+const year=document.getElementById("year");
 
 //a function to use the movie's data to fill out the page
 async function populatePage(){
@@ -12,21 +13,24 @@ async function populatePage(){
     let search=await fetch(apiURL+'movie/'+movieID+apiKey);
     let movie=await search.json();
         
-        var year=" ("+movie.release_date.substring(0,4)+")"
-        title.innerHTML=movie.title+year;
+        let releaseyear=" ("+movie.release_date.substring(0,4)+")"
+        title.innerHTML=movie.title;
+        year.innerHTML=releaseyear;
     
         let poster =document.createElement('img');
-            poster.src = "https://image.tmdb.org/t/p/w200/"+ movie.poster_path;
-            poster.alt = movie.title + ' poster not found.';
+            poster.src = "https://image.tmdb.org/t/p/original/"+ movie.poster_path;
+            poster.alt = movie.title + ' poster not found.'
+            poster.id="poster";
                     
 
-        banner.src="https://image.tmdb.org/t/p/w500/"+movie.backdrop_path;
+        banner.src="https://image.tmdb.org/t/p/original/"+movie.backdrop_path;
         
         var summary=document.createElement('p');
             summary.innerHTML=movie.overview;
+            summary.id="summary";
         
+        data.insertBefore(poster,document.getElementById("titleInfo")); 
         data.appendChild(summary);
-        data.appendChild(poster); 
 
         document.getElementById("form_caption").innerHTML="Submit your review of "+movie.title;
         document.getElementById("form_id").innerHTML=movie.id;
