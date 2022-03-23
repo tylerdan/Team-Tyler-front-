@@ -1,4 +1,4 @@
-const url = 'https://teamtyler.azurewebsites.net/login';
+const url = "https://teamtyler.azurewebsites.net/login";
 
 document.addEventListener('submit', handleSubmit);
 
@@ -10,17 +10,23 @@ function handleSubmit(event) {
               'passWord':pass
     };
     // turns user input into json format for backend
+    console.log(input);
     const data = JSON.stringify(input);
+    console.log(data);
     // should post data to backend
     fetch(url, {
     method:'POST',
         body: data,
         headers: new Headers({
-            'Content-Type': 'application/json; charset=UTF-8'
+            'Content-Type': 'application/json'
         })
-    }).then(function(response) {
-        // logs response from backend (if any) into console
-        console.log(response.text);
+    }).then(response => response.json())
+    .then(function(response) {
+        console.log(response);
+        // checks if response got through
+        if(response.ok) {
+            console.log("Connected!!!");
+        }
     }).catch(function(error){ // if an error is thrown, show it in console
         console.log(error);
     })

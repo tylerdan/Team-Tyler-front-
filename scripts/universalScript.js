@@ -169,9 +169,16 @@ function getCookie(cname) {
 // checks if cookie is set.
 function checkCookie() {
     let user = getCookie("username");
+    console.log(user);
+    var profile = document.getElementById("profile-button");
+    // lets user go to profile page if cookie is set or login page if not
     if (user != "") {
-        document.getElementById("")
+        profile.onclick = function() {
+            location.assign('../webpages/userPage.html');
+        }
     } else {
-
+        profile.onclick = function() {
+            location.assign('../webpages/login.html');
+        }
     }
 }
