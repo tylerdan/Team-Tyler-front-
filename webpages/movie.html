@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link id="theme" rel="stylesheet" type="text/css" href="..\stylesheets\styles-light.css"/>
     <link rel="stylesheet" href="..\stylesheets\styles.css"/>
+    <link rel="stylesheet" href="..\stylesheets\movieStyles.css"/>
+    
+    
+    
     <title>Search Results</title>
 </head>
 <body onload="checkCookie()">
 
     <div class="row" id="banner">
-        <div class="col-2" id="search">
+        <div class="col-3" id="search">
             <form action="searchResults.html" method="GET" class="form-inline">
                 <input required type="search" id="movieSearchInput" class="input-group-text" placeholder="Search for a movie" name="input">
                 <button id="movieSearchSubmit" class="btn btn-primary" type="submit">Search!</button>
@@ -21,7 +25,7 @@
         <div class="col row justify-content-center">
         <h1><a href="index.html">Welcome to the Movie Site!</a></h1>
         </div>
-        <div class="col-2">
+        <div class="col-3">
             <label class="switch">
             <input id="theme-toggle" onclick="darkModeToggle()" type="checkbox">
             <span class="slider round"></span>
@@ -31,14 +35,14 @@
     </div>
     <div id="header">
         <button onclick="history.back()" class="back"> &lt;&lt;Back to results </button>
-        </br>
-        <img src="" id="bannerImg" alt="movie banner">
-        <h2 id="title"></h2>
-    </div>
-
     <div id="data">
+        <span id="titleInfo"> <h2 id="title"></h2><h4 id="year"></h2></span>
 
     </div>
+    </div>
+
+       
+        <img src="" id="bannerImg" alt="movie banner">
     <div id="reviews">
 
     <table id="review_table" >
@@ -51,7 +55,7 @@
 
     </table>
     </br>
-    <form name="new_review" method="post">
+    <form id="reviewForm" name="new_review" method="post">
         <p id="form_caption"></p>
         <input type="hidden" id="form_id">
         <input type="hidden" id="user_id">
