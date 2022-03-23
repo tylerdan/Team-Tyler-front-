@@ -46,17 +46,14 @@ async function getReviews(){
     
     let search=await fetch("https://teamtyler.azurewebsites.net/reviews?id="+movieID)
     let reviewData =await search.json();
-    console.log(reviewData)
-   // console.log(reviewData[0].author.userName)
-    for(i in reviewData){
-        let review=reviewData[i].split(',');
-        //console.log(review);
-        let reviewUser= review[3].substring(8,review[3].length-1);
-        let reviewScore=review[1].substring(8,9);
-        let reviewText=review[2].substring(10,review[2].length-1);
-        //console.log(reviewUser+' '+reviewScore+' '+reviewText)
+
+    for(let review of reviewData){
+
+        let reviewUser= review.userName;
+        let reviewScore=review.rating;
+        let reviewText=review.comment;
         let newReview = new Review(reviewUser,reviewScore,reviewText);
-        console.log(newReview)
+       
         let newRow=table.insertRow()
         table.appendChild(newRow)
         let tableUser=document.createElement('td')
@@ -84,6 +81,12 @@ class Review{
     }
 }
 
-//delete once the reviews are connected to the backend
-let mockReviews=["paul",5,"amazing"]
 
+
+// const form1=document.getElementById("reviewForm");
+
+
+// let radio=3;
+// let textarea="awsome movie";
+// let loggedin='{"id":'+3+'}'
+// let currentMovie='{"id":'+movieID+'}'
