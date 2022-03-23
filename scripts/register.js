@@ -1,19 +1,27 @@
 const registerForm = document.getElementById('registerForm');
 const registerButton = document.getElementById('register-button');
 const registerError = document.getElementById('login-error-msg');
+const url = 'https://teamtyler.azurewebsites.net/signUp';
 
 // when register-button is clicked...
 registerButton.addEventListener("submit", (e) => {
     e.preventDefault();
     const formData = new FormData(this);
 
-    fetch(/*52.188.20.131:9000/login*/, {
+    // posts data to backend signUp function in controller
+    fetch(/*url*/, {
         method:'POST',
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        headers: new Headers({
+            'Content-Type': 'application/json; charset=UTF-8'
+        })
     }).then(function(response) {
-        return response.text();
-    }).then(function(text){// put the response text from previous into console
-        console.log(text);
+        // log response (if any) to console
+        console.log(response.json());
+        // if correctly submitted, bring to user page
+        if(response.status==200) {
+            location.assign('/userPage');
+        }
     }).catch(function(error){// if an error is thrown, show it in console
         console.log(error);
     })
