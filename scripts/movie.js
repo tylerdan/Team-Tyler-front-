@@ -5,7 +5,7 @@ const table = document.getElementById("review_table");
 const form_caption = document.getElementById("form_caption");
 const movieID = window.location.search.split("input=")[1];
 const year=document.getElementById("year");
-
+const userID=3
 //a function to use the movie's data to fill out the page
 async function populatePage(){
     //let query = window.location.search.split("input=");
@@ -33,9 +33,9 @@ async function populatePage(){
         data.appendChild(summary);
 
         document.getElementById("form_caption").innerHTML="Submit your review of "+movie.title;
-        document.getElementById("form_id").value=movieID
-        document.getElementById("user_id").value=3;
-
+       // document.getElementById("form_id").value=movieID
+        //document.getElementById("user_id").value=3;
+     
         //document.getElementById("user_id").innerHTML= USER ID FROM BACK END;
         
     getReviews();
@@ -48,8 +48,9 @@ async function getReviews(){
     
     
     let search=await fetch("https://teamtyler.azurewebsites.net/reviews?id="+movieID)
-    let reviewData =await search.json();
     
+    if (search.status==200){
+    let reviewData =await search.json();
     for(let review of reviewData){
         
         let reviewUser= review.userName;
@@ -70,7 +71,7 @@ async function getReviews(){
             newRow.appendChild(tableText)
         }
         
-        
+    }
         
     }
     class Review{
@@ -85,35 +86,78 @@ async function getReviews(){
 }
 
 
-// class id{
-//     constructor(id){
-//     this.id=id
-//     }
-// }
+class IdObj{
+    constructor(id){
+    this.id=id
+    }
+}
+
+class MovieObj{
+        constructor(id){
+    this.id=id
+    }
+}
+
+class AuthorObj{
+        constructor(id){
+    this.id=id
+    }
+}
+
+class FormProcessed{
+    constructor(rating, comment, author, movie){
+    this.rating=rating
+    this.comment=comment
+    this.author=author
+    this.movie=movie
+    }
+
+}
+
 
 const form1=document.getElementById("reviewForm");
 form1.addEventListener("submit",async (e)=>{
     e.preventDefault();
     
-    const formData = new FormData(form1);
-    const formDataSerialized = Object.fromEntries(formData);
+    // const formData = new FormData(form1);
+    // const formDataSerialized = Object.fromEntries(formData);
+    let rating;
+    const stars =document.getElementsByName("rating");
+    for(i of stars){
+        if(i.checked){rating=Number(i.value)}
+        }
+    let comment=document.getElementById("commentBox").value;
+    let movie=new MovieObj(Number(movieID));
+    let author =new AuthorObj(userID);
+    
 
-    console.log(formDataSerialized)
-    // try {
-        //     const response =await fetch("https://teamtyler.azurewebsites.net/postReview",{
-            //         method: 'PUT',
-            //         body: JSON.stringify(formDataSerialized),
-            //         headers:{
-                //             'Content-Type':'application/json'
-                //         }
+
+
+    let formDataSerialized = new FormProcessed(rating, comment, author, movie)
+
+
+
+    let jsonString = JSON.stringify(formDataSerialized)
+
+
+
+    console.log(jsonString)
+
+    try {
+            const response =await fetch("https://teamtyler.azurewebsites.net/postReview",{
+                    method: 'PUT',
+                    body: JSON.stringify(formDataSerialized),
+                    headers:{
+                            'Content-Type':'application/json'
+                        }
                 
-        //     })
-        //     const json =await response.json();
-        //     console.log(json);
-        // } catch (error) {
-            //     console.error(error);
-            //     alert('erro')
-            // }
+            })
+            const json =await response.json();
+            console.log(json);
+        } catch (error) {
+                console.error(error);
+                alert('error')
+            }
             
         })
         
