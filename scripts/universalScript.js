@@ -181,9 +181,11 @@ function checkCookie() {
         const data = document.cookie.split("=");
         let userInfo = data[1];
         const userData = userInfo.split(",")
-        profile.innerHTML = userData[0] + "'s profile";
+        username =userData[0]
+        profile.innerHTML = username + "'s profile";
         // gets user ID for review ease
-        let userId = userData[1];
+        let userId= userData[1]
+        localStorage.userId = userId;
 
         profile.onclick = function() {
             location.assign('../webpages/userPage.html?name='+username);

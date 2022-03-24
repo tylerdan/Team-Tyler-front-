@@ -5,7 +5,7 @@ const table = document.getElementById("review_table");
 const form_caption = document.getElementById("form_caption");
 const movieID = window.location.search.split("input=")[1];
 const year=document.getElementById("year");
-const userID=3;
+const userID= localStorage.userId;
 //a function to use the movie's data to fill out the page
 async function populatePage(){
     //let query = window.location.search.split("input=");
