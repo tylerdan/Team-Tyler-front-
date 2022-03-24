@@ -15,7 +15,7 @@ function handleSubmit(event) {
     console.log(data);
     // should post data to backend
     fetch(url, {
-    method:'POST',
+    method:'PUT',
         body: data,
         headers: new Headers({
             'Content-Type': 'application/json'
@@ -59,8 +59,8 @@ function handleSubmit(event) {
         // should redirect to userPage if account exists
         if (response.status == 200 && response.text=='true'){
             let userAccount = response.json()
-            // sets cookie if login successful
-            setCookie("username", )
+            // sets cookie if login successful and redirects to userPage
+            setCookie("username", user, 1)
             location.assign('/userPage');
         }
     }).catch(function(error){ // if an error is thrown, show it in console
@@ -69,6 +69,9 @@ function handleSubmit(event) {
 })*/
 
 // sets cookie
-function setCookie(cName, userName){
-     document.cookie = cName + "=" + userName + ";"
+function setCookie(cName, userName, exdays){
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + userName + ";" + expires + ";path=/";
 }

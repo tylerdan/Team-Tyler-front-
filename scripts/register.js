@@ -1,28 +1,50 @@
-const registerForm = document.getElementById('registerForm');
-const registerButton = document.getElementById('register-button');
-const registerError = document.getElementById('login-error-msg');
-const url = 'https://teamtyler.azurewebsites.net/signUp';
+const url = "https://teamtyler.azurewebsites.net/signUp";
 
-// when register-button is clicked...
-registerButton.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(this);
+document.addEventListener('submit', handleSubmit);
 
-    // posts data to backend signUp function in controller
-    fetch(/*url*/, {
-        method:'POST',
-        body: JSON.stringify(formData),
+function handleSubmit(event) {
+    event.preventDefault();
+    var firstName = document.getElementById('firstName').value;
+    var lastName = document.getElementById('lastName').value;
+    var user = document.getElementById('userName').value;
+    var pass = document.getElementById('passWord').value;
+    var name = {'firstName':firstName,
+                'lastName':lastName
+    };
+    var input = {name,
+              'userName':user,
+              'passWord':pass
+    };
+    // turns user input into json format for backend
+    console.log(input);
+    const data = JSON.stringify(input);
+    console.log(data);
+    // should post data to backend
+    fetch(url, {
+    method:'PUT',
+        body: data,
         headers: new Headers({
-            'Content-Type': 'application/json; charset=UTF-8'
+            'Content-Type': 'application/json'
         })
-    }).then(function(response) {
-        // log response (if any) to console
-        console.log(response.json());
-        // if correctly submitted, bring to user page
-        if(response.status==200) {
-            location.assign('/userPage');
+    }).then(response => response.json())
+    .then(function(response) {
+        console.log(response);
+        // checks if response got through
+        // redirects user back to userPage.html and sets login cookie
+        if(response.ok) {
+            console.log("Connected!!!");
+            setCookie("username", user, 1);
+            location.assign('../webpages/userPage.html');
         }
-    }).catch(function(error){// if an error is thrown, show it in console
+    }).catch(function(error){ // if an error is thrown, show it in console
         console.log(error);
     })
-})
+}
+
+// sets cookie as if user logged in
+function setCookie(cName, userName){
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + userName + ";" + expires + ";path=/";
+}
