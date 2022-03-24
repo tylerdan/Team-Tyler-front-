@@ -61,12 +61,18 @@ async function getReviews(){
         let newRow=table.insertRow()
         table.appendChild(newRow)
         let tableUser=document.createElement('td')
-            tableUser.innerHTML=newReview.user;
+            let userLink=document.createElement('A');
+            userLink.setAttribute("href","userPage.html?name="+newReview.user);
+            userLink.innerText=newReview.user;
+
+            tableUser.appendChild(userLink);
             newRow.appendChild(tableUser)
-            let tableScore=document.createElement('td')
+       
+        let tableScore=document.createElement('td')
             tableScore.innerHTML=newReview.score;
             newRow.appendChild(tableScore)    
-            let tableText=document.createElement('td')
+        
+        let tableText=document.createElement('td')
             tableText.innerHTML=newReview.text;
             newRow.appendChild(tableText)
         }
@@ -119,8 +125,7 @@ const form1=document.getElementById("reviewForm");
 form1.addEventListener("submit",async (e)=>{
     e.preventDefault();
     
-    // const formData = new FormData(form1);
-    // const formDataSerialized = Object.fromEntries(formData);
+   
     let rating;
     const stars =document.getElementsByName("rating");
     for(i of stars){
@@ -134,14 +139,6 @@ form1.addEventListener("submit",async (e)=>{
 
 
     let formDataSerialized = new FormProcessed(rating, comment, author, movie)
-
-
-
-    let jsonString = JSON.stringify(formDataSerialized)
-
-
-
-    console.log(jsonString)
 
     try {
             const response =await fetch("https://teamtyler.azurewebsites.net/postReview",{
@@ -158,8 +155,10 @@ form1.addEventListener("submit",async (e)=>{
                 console.error(error);
                 alert('error')
             }
-            
-        })
+                   window.location.reload()
+        }
+ 
+        )
         
         
         
