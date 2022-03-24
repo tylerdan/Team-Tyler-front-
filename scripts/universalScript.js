@@ -177,9 +177,14 @@ function checkCookie() {
     var profile = document.getElementById("profile-button");
     // lets user go to profile page if cookie is set or login page if not
     if (user != "") {
-        username = document.cookie.split("=")[1];
-        //console.log(username);
-        profile.innerHTML = username + "'s profile";
+
+        const data = document.cookie.split("=");
+        let userInfo = data[1];
+        const userData = userInfo.split(",")
+        profile.innerHTML = userData[0] + "'s profile";
+        // gets user ID for review ease
+        let userId = userData[1];
+
         profile.onclick = function() {
             location.assign('../webpages/userPage.html?name='+username);
         }

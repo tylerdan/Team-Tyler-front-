@@ -32,21 +32,26 @@ registerForm.addEventListener("submit", async (e) =>{
         })
     })
     console.log(response);
-    if(response.ok){
+    if(response.status==200){
+        let jsonResult = await response.json();
+        let resultId = jsonResult.id;
         // cookie structure: username=[user], lasts for [1] day
-        setCookie("username", user, 1);
+        setCookie("username", user, resultId, 1);
         console.log(document.cookie);
         // changes profile button to say "[user] profile"
         document.getElementById('profile-button').innerHTML = user + " profile";
         // redirects to profile page
         location.assign('../webpages/userPage.html');
     }
+    else if (response.status == 500) {
+        document.getElementById('register-error-msg').innerHTML = "Account already exists";
+    }
 })
 
 // sets cookie as if user logged in
-function setCookie(cName, userName, exdays){
+function setCookie(cName, userName, userId, exdays){
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     let expires = "expires=" + d.toUTCString();
-    document.cookie = cName + "=" + userName + ";" + expires + ";path=/";
+    document.cookie = cName + "=" + userName + ","+ userId + ";" + expires + ";path=/";
 }
