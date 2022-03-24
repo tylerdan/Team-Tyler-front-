@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script defer src="../scripts/register.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="..\stylesheets\login.css">
     <link id="theme" rel="stylesheet" type="text/css" href="..\stylesheets\styles-light.css"/>
@@ -27,10 +27,15 @@
     <main id="main">
         <h3>Register a new account</h3>
         <form id="registerForm" action="/login.js">
+            <input type="text" placeholder="First Name" id="firstName" required><br>
+            <input type="text" placeholder="Last Name" id="lastName" required><br>
             <input type="text" placeholder="Username" id="userName" required><br>
             <input type="password" placeholder="Password" id="passWord" required><br>
             <button id="register-button" type="submit">Create Account</button>
         </form>
     </main>
 </body>
+<script src="../scripts/register.js"></script>
+<script src="..\scripts\homescript.js"></script>
+<script src="..\scripts\universalScript.js"></script>
 </html>
