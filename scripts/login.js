@@ -36,7 +36,7 @@ userForm.addEventListener("submit", async (e) =>{
                 // cookie structure: username=[user], lasts for [1] day
                 setCookie("username", user, resultId, 1);
                 // changes profile button to say "[user] profile"
-                document.getElementById('profile-button').innerHTML = user + " profile";
+                document.getElementById('profile-button').innerHTML = user + "'s profile";
                 // redirects to profile page
                 location.assign('../webpages/userPage.html');
                 console.log(response);
