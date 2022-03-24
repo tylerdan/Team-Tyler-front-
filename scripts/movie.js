@@ -5,11 +5,11 @@ const table = document.getElementById("review_table");
 const form_caption = document.getElementById("form_caption");
 const movieID = window.location.search.split("input=")[1];
 const year=document.getElementById("year");
-const userID=3
+const userID=3;
 //a function to use the movie's data to fill out the page
 async function populatePage(){
     //let query = window.location.search.split("input=");
-    console.log(apiURL+'movie/'+movieID+apiKey)
+    //console.log(apiURL+'movie/'+movieID+apiKey)
     let search=await fetch(apiURL+'movie/'+movieID+apiKey);
     let movie=await search.json();
         
@@ -80,6 +80,10 @@ async function getReviews(){
     }
         
     }
+
+
+//classes for processing data
+
     class Review{
         constructor(user, score, text){
             this.user=user;
@@ -121,6 +125,8 @@ class FormProcessed{
 }
 
 
+
+//submission form for reviews
 const form1=document.getElementById("reviewForm");
 form1.addEventListener("submit",async (e)=>{
     e.preventDefault();

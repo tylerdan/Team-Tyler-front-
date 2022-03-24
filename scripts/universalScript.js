@@ -3,9 +3,14 @@ const apiKey = '?api_key=a96991b0bf66d698b2c930defd8ed6db';
 //search pattern is: apiURL+'search/movie'+apiKey+'&query='+ movie_title
 //specific movie pattern is apiURL+movieID+apiKey
 //documentation here: https://developers.themoviedb.org/3/getting-started/introduction
-
+var username;
 const movieSearchInput=document.getElementById('movieSearchInput');
 const movieSearchSubmit=document.getElementById('movieSearchSubmit');
+
+// let getUser =()=>{return username};
+
+// export default getUser;
+
 
 //gets the value from the url and runs a search
 function getQueryValue(){
@@ -172,11 +177,11 @@ function checkCookie() {
     var profile = document.getElementById("profile-button");
     // lets user go to profile page if cookie is set or login page if not
     if (user != "") {
-        const username = document.cookie.split("=");
+        username = document.cookie.split("=")[1];
         //console.log(username);
-        profile.innerHTML = username[1] + "'s profile";
+        profile.innerHTML = username + "'s profile";
         profile.onclick = function() {
-            location.assign('../webpages/userPage.html');
+            location.assign('../webpages/userPage.html?name='+username);
         }
     } else {
         profile.onclick = function() {
