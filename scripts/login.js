@@ -28,7 +28,7 @@ userForm.addEventListener("submit", async (e) =>{
             })
         })
         console.log(response);
-        if(response.ok){
+        if(response.status==200){
             // cookie structure: username=[user], lasts for [1] day
             setCookie("username", user, 1);
             console.log(document.cookie);
@@ -36,6 +36,8 @@ userForm.addEventListener("submit", async (e) =>{
             document.getElementById('profile-button').innerHTML = user + " profile";
             // redirects to profile page
             location.assign('../webpages/userPage.html');
+        } else if (response.status == 500) {
+            document.getElementById('login-error-msg').innerHTML = "Incorrect username and/or password";
         }
     } catch (error) {
         document.getElementById('login-error-msg').innerHTML = "Incorrect username and/or password";
