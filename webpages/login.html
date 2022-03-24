@@ -33,11 +33,14 @@
         <div id="login-error">
             <p id="login-error-msg"><!--Invalid username and/or password--></p>
         </div>
-        <form id="login" action="../scripts/login.js" method="post">
+        <form id="login">
             <input type="text" placeholder="Username" id="userName" required><br>
             <input type="password" placeholder="Password" id="passWord" required><br>
             <button id="login-button" type="submit" value="Submit">Login</button>
         </form>
+        <dif id="registerRedirect">
+            <button id="register-redirect" onclick="location.assign('../webpages/signUp.html')">Register New Account</button>
+        </dif>
     </main>
 
     <div class="footer">

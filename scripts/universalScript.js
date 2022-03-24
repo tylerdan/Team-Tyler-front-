@@ -169,10 +169,12 @@ function getCookie(cname) {
 // checks if cookie is set.
 function checkCookie() {
     let user = getCookie("username");
-    console.log(user);
     var profile = document.getElementById("profile-button");
     // lets user go to profile page if cookie is set or login page if not
     if (user != "") {
+        const username = document.cookie.split("=");
+        //console.log(username);
+        profile.innerHTML = username[1] + "'s profile";
         profile.onclick = function() {
             location.assign('../webpages/userPage.html');
         }
@@ -181,4 +183,10 @@ function checkCookie() {
             location.assign('../webpages/login.html');
         }
     }
+}
+
+function deleteCookie() {
+    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    console.log(document.cookie);
+    location.assign('../webpages/index.html');
 }

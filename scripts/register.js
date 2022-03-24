@@ -1,28 +1,52 @@
+const url = "https://teamtyler.azurewebsites.net/signUp";
+
+//document.addEventListener('submit', handleSubmit);
+
+class userInfo{
+    constructor(name, userName, passWord){
+        this.name = name;
+        this.userName = userName;
+        this.passWord = passWord;
+    }
+}
+
 const registerForm = document.getElementById('registerForm');
-const registerButton = document.getElementById('register-button');
-const registerError = document.getElementById('login-error-msg');
-const url = 'https://teamtyler.azurewebsites.net/signUp';
-
-// when register-button is clicked...
-registerButton.addEventListener("submit", (e) => {
+registerForm.addEventListener("submit", async (e) =>{
     e.preventDefault();
-    const formData = new FormData(this);
+    let firstName = document.getElementById('firstName').value;
+    let lastName = document.getElementById('lastName').value;
+    let user = document.getElementById('userName').value;
+    let pass = document.getElementById('passWord').value;
+    let name = {'firstName':firstName,
+                'lastName':lastName
+    };
 
-    // posts data to backend signUp function in controller
-    fetch(/*url*/, {
+    let formData = new userInfo(name, user, pass);
+    let jsonString = JSON.stringify(formData);
+    console.log(jsonString);
+    const response = await fetch(url, {
         method:'POST',
-        body: JSON.stringify(formData),
+        body: jsonString,
         headers: new Headers({
-            'Content-Type': 'application/json; charset=UTF-8'
+          'Content-Type': 'application/json'
         })
-    }).then(function(response) {
-        // log response (if any) to console
-        console.log(response.json());
-        // if correctly submitted, bring to user page
-        if(response.status==200) {
-            location.assign('/userPage');
-        }
-    }).catch(function(error){// if an error is thrown, show it in console
-        console.log(error);
     })
+    console.log(response);
+    if(response.ok){
+        // cookie structure: username=[user], lasts for [1] day
+        setCookie("username", user, 1);
+        console.log(document.cookie);
+        // changes profile button to say "[user] profile"
+        document.getElementById('profile-button').innerHTML = user + " profile";
+        // redirects to profile page
+        location.assign('../webpages/userPage.html');
+    }
 })
+
+// sets cookie as if user logged in
+function setCookie(cName, userName, exdays){
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cName + "=" + userName + ";" + expires + ";path=/";
+}
