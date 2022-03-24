@@ -1,24 +1,32 @@
-html {
-    height: 100%;
-}
+html{height:100%;
+  margin: 0;}
 
 body {
   height: 100%;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  display: grid;
-  justify-items: center;
-  align-items: center;
+
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
   background-color: #3a3a3a;
 }
 
+
+#passWord, #userName{
+  border-radius: 5px;
+}
+
+#loginTop, #passWord{margin: 2%;}
+
 #main {
   width: 50%;
-  height: 70%;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  background-color: white;
+  height: 50%;
+  margin-top: 5%;
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+
   border-radius: 7px;
   box-shadow: 0px 0px 5px 2px black;
 }

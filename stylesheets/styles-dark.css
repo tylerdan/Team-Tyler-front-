@@ -6,6 +6,10 @@ a:hover{
     text-decoration: none;
 }
 
+#main{
+      background-color: grey;
+      box-shadow:0 4px 8px 0 rgba(255, 255, 255, 1), 0 4px 8px 0 rgba(255, 255, 255, 1);
+}
 
 #banner{
     background-color: #D0DAEE;
