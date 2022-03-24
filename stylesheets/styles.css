@@ -62,12 +62,18 @@ div{
     }
 
 
- 
+
 table, th, td {
   border:3px double black;
   text-align: center;
 }
 table{width: 60%;}
+
+
+
+
+
+
 
  /* The switch - the box around the slider */
  .switch {
