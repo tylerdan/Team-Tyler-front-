@@ -1,4 +1,4 @@
-#Project 2 - The Movie Site
+# Project 2 - The Movie Site
 
 ## An Explanation and Overview of the project
 Our second project for Revature. My group decided to create a web site that allows users to view and post reviews to movies, create and log in to personal user accounts, and search for specific movies.
