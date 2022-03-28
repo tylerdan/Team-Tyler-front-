@@ -29,4 +29,3 @@ Our second project for Revature. My group decided to create a web site that allo
 - Search for a movie using the "search" bar in the upper left 
 - Click on / around the desired movie (image or title) to be redirected to a page with a description of the movie and user reviews
 - Fill in a review if you want (unless logged in the review will be posted as "anonymous")
-- 
